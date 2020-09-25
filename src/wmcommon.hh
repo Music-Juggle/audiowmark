@@ -43,7 +43,8 @@ public:
   static           bool snr;                       // compute/show snr while adding watermark
   static           int  have_key;
 
-  static constexpr size_t payload_size     = 128;  // number of payload bits for the watermark
+  static           size_t payload_size;            // number of payload bits for the watermark
+  static           bool   payload_short;
 
   static constexpr int sync_bits           = 6;
   static constexpr int sync_frames_per_bit = 85;
@@ -67,6 +68,8 @@ public:
 
   static           RawFormat raw_input_format;
   static           RawFormat raw_output_format;
+
+  static           int hls_bit_rate;
 
   // input/output labels can be set for pretty output for videowmark add
   static           std::string input_label;
@@ -160,6 +163,7 @@ randomize_bit_order (const std::vector<T>& bit_vec, bool encode)
   return out_bits;
 }
 
+int add_stream_watermark (AudioInputStream *in_stream, AudioOutputStream *out_stream, const std::string& bits, size_t zero_frames);
 int add_watermark (const std::string& infile, const std::string& outfile, const std::string& bits);
 int get_watermark (const std::string& infile, const std::string& orig_pattern);
 

@@ -44,7 +44,7 @@ public:
   ~MP3InputStream();
 
   Error   open (const std::string& filename);
-  Error   read_frames (std::vector<float>& samples, size_t count);
+  Error   read_frames (std::vector<float>& samples, size_t count) override;
   void    close();
 
   int     bit_depth() const override;
@@ -56,4 +56,3 @@ public:
 };
 
 #endif /* AUDIOWMARK_MP3_INPUT_STREAM_HH */
-
